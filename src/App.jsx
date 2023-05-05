@@ -1,61 +1,18 @@
-import { useState } from 'react'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import Home from './components/Home.jsx'
+import Login from './components/Login.jsx'
+import Signup from './components/Signup.jsx'
+import './styles/App.css'
+
 
 function App() {
-  const [url, setUrl] = useState('');
-  const [openQuestion, setQuestion] = useState(false);
-
-  const generateSummary = (type) => {
-  }
-
-  const askQuestionToDoc = () => {}
-
   return (
-    <div className="container">
-        <div className="card">
-            <form>
-                <label htmlFor="url">🌐 Enter URL: </label>
-                <input 
-                  type="url" 
-                  name="url" 
-                  required 
-                  value={url}
-                  onChange={(e) => setUrl(e.target.value)}
-                />
-                {
-                  openQuestion ? (
-                    <div className="question-container">
-                      <label htmlFor="url"> Write you question </label>
-                      <input 
-                        type="text"
-                      />
-                      <button onClick={askQuestionToDoc}>Submit</button>
-                      <button onClick={e => {
-                        e.preventDefault();
-                        setQuestion(false)
-                      }}>Back</button>
-                    </div>
-                  ) : (
-                    <div className="button-container">
-                      <button onClick={e => {
-                        e.preventDefault();
-                        generateSummary('summary')
-                      }}>Generate Sumary</button>
-                      <button onClick={e => {
-                        e.preventDefault();
-                        generateSummary('point-form')
-                      }}>Generate Sumary (Point Form)</button>
-                      <button onClick={e => {
-                        e.preventDefault();
-                        setQuestion(true)
-                      }}>Ask a Question 🙋</button>
-                    </div>
-                  ) 
-                }
-            </form>
-        </div>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+    </Routes>
   )
 }
 
-export default App
+export default App;
